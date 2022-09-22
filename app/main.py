@@ -29,6 +29,10 @@ def find_index_post(id:int):
         if p['id'] == id:
             return i
 
+@app.get("/")
+async def home():
+    return {"Application is running"}
+
 @app.get("/posts")
 async def getPost():
     return my_posts
