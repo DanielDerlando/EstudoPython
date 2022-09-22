@@ -61,3 +61,13 @@ async def getPostById(id:int):
     if index == None:
         raise(HTTPException(status.HTTP_404_NOT_FOUND))
     return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+@app.put("/posts/{id}")
+async def updatePost(id:int, post:Post):
+    index = find_index_post(id)
+    if index == None:
+        raise(HTTPException(status.HTTP_404_NOT_FOUND))
+    my_post = post.dict()
+    my_post['id']=id
+    my_posts[index]=my_post
+    return my_post
