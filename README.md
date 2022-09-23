@@ -27,3 +27,13 @@
 8- Run localy the app
 
     uvicorn app.main:app --reload
+
+9- Install libs sqlalchemy and pymysql for working with mysql
+
+    pip install sqlalchemy pymysql
+
+10- Remember to redo step 7 on every change on libs
+
+11- Install xampp for working with mysql localy
+
+    https://www.apachefriends.org/pt_br/index.html

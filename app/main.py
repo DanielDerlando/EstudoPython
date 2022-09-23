@@ -1,21 +1,31 @@
 from random import randrange
-from typing import Optional
-from fastapi import FastAPI, Response, status, HTTPException
+from fastapi import FastAPI, Response, status, HTTPException, Depends
 from pydantic import BaseModel
+from .routes.index import user
+from .models.index import Posts
+from .config.db import engine,get_db,Base
+from sqlalchemy.orm import Session
+
 
 app = FastAPI()
+
+Base.metadata.create_all(engine)
+
+@app.get("/")
+async def home():
+    return {"Application is running"}
+
+app.include_router(user,prefix="/users")
 
 class Post(BaseModel):
     title: str
     content: str
     published: bool = True
-    rating: Optional[int] = None
 
 my_posts = [{
         "title": "Olá Mundo",
         "content": "Teste",
         "published": True,
-        "rating": None,
         "id": 1
     }]
 
@@ -29,13 +39,10 @@ def find_index_post(id:int):
         if p['id'] == id:
             return i
 
-@app.get("/")
-async def home():
-    return {"Application is running"}
 
 @app.get("/posts")
-async def getPost():
-    return my_posts
+async def getPost(db: Session = Depends(get_db)):
+    return db.query(Posts).all()
 
 @app.post("/posts", status_code=status.HTTP_201_CREATED)
 async def createPost(post:Post):  
