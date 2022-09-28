@@ -37,3 +37,7 @@
 11- Install xampp for working with mysql localy
 
     https://www.apachefriends.org/pt_br/index.html
+
+12- Install passlib and Bcrypt for crypt and decrypt passwords
+
+    pip install passlib[bcrypt]
