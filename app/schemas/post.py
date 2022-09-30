@@ -1,5 +1,6 @@
 from datetime import datetime
 from pydantic import BaseModel
+from . import user
 
 class PostBase(BaseModel):
     title: str
@@ -11,6 +12,8 @@ class CreatePost(PostBase):
 
 class Post (PostBase):
     id: int
-    create_at: datetime    
+    create_at: datetime
+    owner_id: int
+    owner: user.UserResponse     
     class Config:
         orm_mode = True

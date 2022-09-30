@@ -1,13 +1,15 @@
 from fastapi import FastAPI
 from .routers import routers
 from .config.db import engine,Base
+from .config.config import settings
 
 Base.metadata.create_all(engine)
 
 app = FastAPI()
 
-app.include_router(routers.user,prefix="/users")
-app.include_router(routers.post,prefix="/posts")
+app.include_router(routers.user)
+app.include_router(routers.post)
+app.include_router(routers.auth)
 
 @app.get("/")
 async def home():

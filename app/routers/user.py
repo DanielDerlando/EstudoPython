@@ -5,7 +5,10 @@ from ..schemas import schema
 from ..config.db import get_db
 from .. import utils
 
-user = APIRouter()
+user = APIRouter(
+    prefix="/users",
+    tags=["Users"]
+)
 
 @user.get("/")
 async def getUsers(db: Session = Depends(get_db)):

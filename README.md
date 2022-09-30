@@ -38,6 +38,10 @@
 
     https://www.apachefriends.org/pt_br/index.html
 
-12- Install passlib and Bcrypt for crypt and decrypt passwords
+12- Install passlib and Bcrypt for hashing passwords
 
     pip install passlib[bcrypt]
+
+13- Install python-jose and cryptography for working with jwt token
+
+    pip install python-jose[cryptography]
