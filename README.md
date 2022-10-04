@@ -45,3 +45,18 @@
 13- Install python-jose and cryptography for working with jwt token
 
     pip install python-jose[cryptography]
+
+14- Install alembic a migration db tool
+
+    pip install alembic
+
+15- Create tables using alembic
+
+    alembic init alembic
+    alembic revision -m "create post table"
+    alembic revision -m "create users table"
+
+16- Create new revision autogenarated
+
+    alembic revision --autogenerate -m "auto generate db changes"
+
